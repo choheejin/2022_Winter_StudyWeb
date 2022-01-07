@@ -1,0 +1,33 @@
+body{
+  margin: 50px 300px;
+  align-content: center;
+  background-color: white;
+}
+
+header{
+  padding: 10px;
+}
+
+div.name{
+ font-weight: bold;
+ font-size: xx-large; 
+}
+
+nav ul {
+  border-top: solid 1px black;
+  border-bottom: solid 1px black;
+  padding: 10px 10px;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  text-decoration-line: none;
+}
+
+nav ul div {
+  float: right;
+}
+
