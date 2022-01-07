@@ -1,14 +1,19 @@
-body{
-  margin: 50px 300px;
+body {
   align-content: center;
-  background-color: white;
+  background-color: rgb(207, 207, 207);
 }
 
-header{
+#warp {
+  margin: 50px 300px;
+  background-color: white;
+  padding: 30px 30px;
+}
+
+header {
   padding: 10px;
 }
 
-div.name{
+div.name {
  font-weight: bold;
  font-size: xx-large; 
 }
@@ -25,9 +30,37 @@ nav ul li {
 
 nav ul li a {
   text-decoration-line: none;
+  padding-right: 30px;
 }
 
 nav ul div {
   float: right;
 }
 
+section{
+  width: 1090px padding 30px;
+  height: 860px;
+}
+
+section div#artical{
+  width: 635px;
+  height: 860px;
+  float: left;
+}
+
+section div#aside {
+  border-left: solid 1px black;
+  width: 200px;
+  height: 800px;
+  float: right;
+}
+
+#aside ul {
+  list-style: none;
+  padding-left: 0; 
+  margin-left: 25px;
+}
+#aside ul li a {
+  text-decoration-line: none;
+  padding-left: 10px;
+}
