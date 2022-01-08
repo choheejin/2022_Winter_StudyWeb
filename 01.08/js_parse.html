@@ -19,5 +19,16 @@
       합계:         <input id="sum" /><br />
       <input type="button" value="계산" onclick="calc();" />
     </form>
+    <h1 id="test">This is a heading</h1>
+    <script>
+      function func(){
+        e = document.getElementById("test");
+        if (e.style.color == "red")
+          e.style.color = "black";
+        else
+          e.style.color = "red";
+      }
+    </script>
+    <button type="button" onclick="func();">클릭하세요!</button>
   </body>
 </html>
