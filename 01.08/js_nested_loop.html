@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+  <form name="myForm">
+    필드1<input type="text" name="a0"><br />
+    필드2<input type="text" name="a1"><br />
+    필드3<input type="text" name="a2"><br />
+    <input type="button" value="초기화" onclick="init();"><br /><br />
+  </form>
+
+  <script>
+    var myCar = { make: "BMW", modle: "X5", year: 2013 };
+    var txt = "";
+    for (var x in myCar) {
+      txt += myCar[x] + " ";
+    }
+    document.write(txt);
+
+
+    document.write("<h1>구구단 표</h1>");
+    document.write("<table border=2px width=50% ");
+    for (var i = 1; i <= 9; i++) {
+      document.write("<tr>");
+      document.write("<td>" + i + "</td>");
+      for (var j = 2; j <= 9; j++) {
+        document.write("<td>" + i * j + "</td>");
+      }
+      document.write("</tr>");
+    }
+  </script>
+
+
+
+  <script>
+    function init() {
+      for (var x = 0; x < 3; x++) {
+        document.myForm['a' + x].value = Math.floor(Math.random() * 100 + 1);
+      }
+    }
+  </script>
+</body>
+
+</html>
