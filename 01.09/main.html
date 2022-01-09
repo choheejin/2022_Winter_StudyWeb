@@ -29,39 +29,35 @@
         </ul>
         <h1>파이썬 부트캠프</h1>
 
-        <span class="evl" id="thumbsBack">
-          <img src="images/icon_thumbs_up.png" id="thumbs" onclick="clickThumbs();" width="25">
+        <span class="evl" id="thumbsBack" onclick="clickThumbs();">
+          <img src="images/icon_thumbs_up.png" id="thumbs" width="25">
         </span>
-        <span class="evl" id="heartBack">
-          <img src="images/icon_heart.png" id="heart" onclick="clickHeart()" ; width="25">
+        <span class="evl" id="heartBack" onclick="clickHeart()">
+          <img src="images/icon_heart.png" id="heart" width="25">
         </span>
         <p>별점 평균 4.5</p>
 
         <div id="group">
           <span class="star">
-            <img src="images/icon_empty_star.png" id="s0" onmousemove="OnMouseMove (this)"
-              onmouseout="OnMouseOut (this)" width="40" alt="">
+            <img src="images/icon_empty_star.png" id="s0" onmousemove="OnMouseMove(this)" onclick="fixStar(this)" width="40" alt="">
           </span>
           <span class="star">
-            <img src="images/icon_empty_star.png" id="s1" onmousemove="OnMouseMove (this)"
-              onmouseout="OnMouseOut (this)" width="40" alt="">
+            <img src="images/icon_empty_star.png" id="s1" onmousemove="OnMouseMove(this)" onclick="fixStar(this)" width="40" alt="">
           </span>
           <span class="star">
-            <img src="images/icon_empty_star.png" id="s2" onmousemove="OnMouseMove (this)"
-              onmouseout="OnMouseOut (this)" width="40" alt="">
+            <img src="images/icon_empty_star.png" id="s2" onmousemove="OnMouseMove(this)" onclick="fixStar(this)" width="40" alt="">
           </span>
           <span class="star">
-            <img src="images/icon_empty_star.png" id="s3" onmousemove="OnMouseMove (this)"
-              onmouseout="OnMouseOut (this)" width="40" alt="">
+            <img src="images/icon_empty_star.png" id="s3" onmousemove="OnMouseMove(this)" onclick="fixStar(this)" width="40" alt="">
           </span>
           <span class="star">
-            <img src="images/icon_empty_star.png" id="s4" onmousemove="OnMouseMove (this)"
-              onmouseout="OnMouseOut (this)" width="40" alt="">
+            <img src="images/icon_empty_star.png" id="s4" onmousemove="OnMouseMove(this)" onclick="fixStar(this)" width="40" alt="">
           </span>
 
           <img src="images/icon_remove_star.png" onclick="reset()" style="padding: 10px 2px;">
 
           <script>
+            var flag = false;
             function fillStar(elem) {
               var standard = elem.getAttribute('id');
               var i = 0;
@@ -73,40 +69,53 @@
               }
             }
 
+            function fixStar(elem){
+              flag = true;
+            }
+
             function OnMouseMove(elem) {
-              fillStar(elem);
-              let x = event.offsetX;
-              let y = event.offsetY;
-              if (y >= 30 || y <= 10) {
-                console.log("ehla")
-                resetStar(elem);
-              }else{
-                if (x <= 25 && x > 10)
-                  elem.src = "images/icon_half_star.png";
-                else if (x <= 10 || x > 33){
-                  elem.src = "images/icon_empty_star.png";
+              if(flag==true){
+                console.log("클릭")
+                return false;
+              } else{
+                let x = event.offsetX;
+                let y = event.offsetY;
+                let x2 = event.clientX;
+
+                console.log(x, x2);
+                fillStar(elem);
+
+                if (y >= 30 || y <= 10 ) {
+                  console.log("ehla")
                   resetStar(elem);
+                } else {
+                  if (x <= 25 && x > 10)
+                    elem.src = "images/icon_half_star.png";
+                  else if (x <= 10 || x > 33) {
+                    elem.src = "images/icon_empty_star.png";
+                    resetStar(elem);
+                  }
+                  else
+                    elem.src = "images/icon_star.png";
+                  console.log(x, y);
                 }
-                else
-                  elem.src = "images/icon_star.png";
-                console.log(x, y);
               }
             }
 
-            function resetStar(elem){
+            function resetStar(elem) {
               var standard = elem.getAttribute('id');
               var i = parseInt(standard.substr(standard.length - 1));
               var target = "";
-              console.log("reset"+standard, target)
+              console.log("reset" + standard, target)
               while (i !== -1) {
                 target = "s" + i;
-                console.log(target);
                 document.getElementById(target).src = "images/icon_empty_star.png";
                 i--;
               }
             }
 
-            function reset(){
+            function reset() {
+              flag = false;
               var i = 4;
               var target = "";
               while (i !== -1) {
