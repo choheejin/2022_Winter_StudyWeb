@@ -10,7 +10,6 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="reset.css" />
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js"></script>
   <title>영화 별점 평가하기</title>
 </head>
 
@@ -60,16 +59,14 @@
               onmouseout="OnMouseOut (this)" width="40" alt="">
           </span>
 
-          <img src="images/icon_remove_star.png" style="padding: 10px 2px;">
+          <img src="images/icon_remove_star.png" onclick="reset()" style="padding: 10px 2px;">
 
           <script>
             function fillStar(elem) {
               var standard = elem.getAttribute('id');
-              console.log("테스트");
               var i = 0;
               var target = "";
               while (standard !== target) {
-                console.log("작동중");
                 target = "s" + i;
                 document.getElementById(target).src = "images/icon_star.png";
                 i++;
@@ -80,15 +77,45 @@
               fillStar(elem);
               let x = event.offsetX;
               let y = event.offsetY;
-              if (x <= 25 && x > 10)
-                elem.src = "images/icon_half_star.png";
-              else if (x <= 10 || x>33)
-                elem.src = "images/icon_empty_star.png";
-              else
-                elem.src = "images/icon_star.png";
-              console.log(x, y);
+              if (y >= 30 || y <= 10) {
+                console.log("ehla")
+                resetStar(elem);
+              }else{
+                if (x <= 25 && x > 10)
+                  elem.src = "images/icon_half_star.png";
+                else if (x <= 10 || x > 33){
+                  elem.src = "images/icon_empty_star.png";
+                  resetStar(elem);
+                }
+                else
+                  elem.src = "images/icon_star.png";
+                console.log(x, y);
+              }
             }
 
+            function resetStar(elem){
+              var standard = elem.getAttribute('id');
+              var i = parseInt(standard.substr(standard.length - 1));
+              var target = "";
+              console.log("reset"+standard, target)
+              while (i !== -1) {
+                target = "s" + i;
+                console.log(target);
+                document.getElementById(target).src = "images/icon_empty_star.png";
+                i--;
+              }
+            }
+
+            function reset(){
+              var i = 4;
+              var target = "";
+              while (i !== -1) {
+                target = "s" + i;
+                console.log(target);
+                document.getElementById(target).src = "images/icon_empty_star.png";
+                i--;
+              }
+            }
 
             function clickThumbs() {
               if (document.getElementById('thumbsBack').style.backgroundColor == "rgb(53, 135, 242)") {
