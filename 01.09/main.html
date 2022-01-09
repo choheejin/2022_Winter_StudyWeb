@@ -10,6 +10,7 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="reset.css" />
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
   <title>영화 별점 평가하기</title>
 </head>
 
@@ -29,34 +30,90 @@
         </ul>
         <h1>파이썬 부트캠프</h1>
 
-        <span class="evl">
-          <img src="images/icon_thumbs_up.png" width="25">
+        <span class="evl" id="thumbsBack">
+          <img src="images/icon_thumbs_up.png" id="thumbs" onclick="clickThumbs();" width="25">
         </span>
-        <span class="evl">
-          <img src="images/icon_heart.png" width="25">
+        <span class="evl" id="heartBack">
+          <img src="images/icon_heart.png" id="heart" onclick="clickHeart()" ; width="25">
         </span>
         <p>별점 평균 4.5</p>
-        
+
         <div id="group">
-          <span class="star" id="s0">
-            <img src="images/icon_empty_star.png" width="40" alt="">
+          <span class="star">
+            <img src="images/icon_empty_star.png" id="s0" onmousemove="OnMouseMove (this)"
+              onmouseout="OnMouseOut (this)" width="40" alt="">
           </span>
-          <span class="star" id="s1">
-            <img src="images/icon_empty_star.png" width="40" alt="">
+          <span class="star">
+            <img src="images/icon_empty_star.png" id="s1" onmousemove="OnMouseMove (this)"
+              onmouseout="OnMouseOut (this)" width="40" alt="">
           </span>
-          <span class="star" id="s2">
-            <img src="images/icon_empty_star.png" width="40" alt="">
+          <span class="star">
+            <img src="images/icon_empty_star.png" id="s2" onmousemove="OnMouseMove (this)"
+              onmouseout="OnMouseOut (this)" width="40" alt="">
           </span>
-          <span class="star" id="s3">
-            <img src="images/icon_empty_star.png" width="40" alt="">
+          <span class="star">
+            <img src="images/icon_empty_star.png" id="s3" onmousemove="OnMouseMove (this)"
+              onmouseout="OnMouseOut (this)" width="40" alt="">
           </span>
-          <span class="star" id="s4">
-            <img src="images/icon_empty_star.png" width="40" alt="">
+          <span class="star">
+            <img src="images/icon_empty_star.png" id="s4" onmousemove="OnMouseMove (this)"
+              onmouseout="OnMouseOut (this)" width="40" alt="">
           </span>
 
           <img src="images/icon_remove_star.png" style="padding: 10px 2px;">
+
+          <script>
+            function fillStar(elem) {
+              var standard = elem.getAttribute('id');
+              console.log("테스트");
+              var i = 0;
+              var target = "";
+              while (standard !== target) {
+                console.log("작동중");
+                target = "s" + i;
+                document.getElementById(target).src = "images/icon_star.png";
+                i++;
+              }
+            }
+
+            function OnMouseMove(elem) {
+              fillStar(elem);
+              let x = event.offsetX;
+              let y = event.offsetY;
+              if (x <= 25 && x > 10)
+                elem.src = "images/icon_half_star.png";
+              else if (x <= 10 || x>33)
+                elem.src = "images/icon_empty_star.png";
+              else
+                elem.src = "images/icon_star.png";
+              console.log(x, y);
+            }
+
+
+            function clickThumbs() {
+              if (document.getElementById('thumbsBack').style.backgroundColor == "rgb(53, 135, 242)") {
+                document.getElementById('thumbsBack').style.backgroundColor = "transparent";
+                document.getElementById('thumbs').src = "images/icon_thumbs_up.png"
+              }
+              else {
+                document.getElementById('thumbsBack').style.backgroundColor = "rgb(53, 135, 242)";
+                document.getElementById('thumbs').src = "images/icon_thumbs_up_fill.png"
+              }
+            }
+
+            function clickHeart() {
+              if (document.getElementById('heartBack').style.backgroundColor == "rgb(242, 92, 92)") {
+                document.getElementById('heartBack').style.backgroundColor = "transparent";
+                document.getElementById('heart').src = "images/icon_heart.png"
+              }
+              else {
+                document.getElementById('heartBack').style.backgroundColor = "rgb(242, 92, 92)";
+                document.getElementById('heart').src = "images/icon_heart_fill.png"
+              }
+            }
+          </script>
         </div>
-        
+
       </div>
 
     </div>
